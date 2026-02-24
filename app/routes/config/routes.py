@@ -327,8 +327,8 @@ def show_configs_for_compare(service, server_ip):
 @bp.post('/compare/<service>/<server_ip>/show')
 @check_services
 def show_compare(service, server_ip):
-    left = request.json.get('left')
-    right = request.json.get('right')
+    left = common.checkAjaxInput(request.json.get('left'))
+    right = common.checkAjaxInput(request.json.get('right'))
     compare = config_mod.compare_config(service, left, right)
     return jsonify({'compare': compare})
 
